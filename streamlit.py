@@ -40,10 +40,3 @@ for column in ['cpf_cnpj_licitante', 'numero_licitacao',
     df_top['Proporção'] = round(df_top[column_analysis]/global_mean, 1)
     st.text(map_text[column])
     st.dataframe(df_top)
-
-import pandas_profiling
-from streamlit_pandas_profiling import st_profile_report
-
-pr = df.profile_report()
-st_profile_report(pr)
-pr.to_file("contratos_profiling.html")
