@@ -8,7 +8,7 @@ input_file_name = 'TCE-PB-Contratos_2024.csv'
 df = pd.read_csv(input_file_name, sep=';', encoding='latin-1')
 
 # Establece el título de la aplicación web
-st.title("TCE PB - Licitações (2024)")
+st.title("TCE PB - Contratos (2024)")
 
 def convert_float(value):
     try:
@@ -32,8 +32,7 @@ map_text = {
     'ente': f'Top {top_k} valores por Ente em relação a média',
     'cod_modalidade_licitacao': f'Top {top_k} Código Modalidade de Licitação por Ente em relação a média'}
 
-for column in ['cpf_cnpj_licitante', 'numero_licitacao',
-                'ente', 'cod_modalidade_licitacao']:
+for column in list(map_text.keys()):
     df_top = df.groupby(column)[column_analysis].mean()
     df_top = pd.DataFrame(df_top.nlargest(top_k).reset_index())
     df_top[column_analysis] = round(df_top[column_analysis], 2)
